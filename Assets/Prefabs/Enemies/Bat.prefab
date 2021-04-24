@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8955450358721816762}
   - component: {fileID: 8955450358721816761}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TempSprites_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8955450359242582373}
   - component: {fileID: 8955450359242582372}
   - component: {fileID: 8955450359242582171}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bat
   m_TagString: Untagged
   m_Icon: {fileID: 0}

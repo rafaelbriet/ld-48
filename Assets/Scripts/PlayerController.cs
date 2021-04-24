@@ -15,15 +15,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Vector2 wallCheckSize = new Vector2(0.1f, 1f);
     [SerializeField]
+
     private LayerMask layerMask;
     private Rigidbody2D rb;
     private BoxCollider2D boxCollider2D;
     private bool isGrounded = true;
+    private Sword sword;
+
+    public bool IsFacingRight { get; private set; }
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
+        sword = GetComponent<Sword>();
     }
 
     private void Update()
@@ -31,11 +36,18 @@ public class PlayerController : MonoBehaviour
         Move();
         Jump();
         CheckGrounded();
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            sword.Attack();
+        }
     }
 
     private void Move()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
+
+        FacingRightCheck(horizontal);
 
         Vector2 leftPoint = new Vector2(boxCollider2D.bounds.center.x - boxCollider2D.bounds.extents.x, boxCollider2D.bounds.center.y);
         Vector2 leftSize = new Vector2(wallCheckSize.x, wallCheckSize.y);
@@ -59,6 +71,18 @@ public class PlayerController : MonoBehaviour
         Vector3 translations = new Vector3(horizontal * speed * Time.deltaTime, 0, 0);
 
         transform.Translate(translations);
+    }
+
+    private void FacingRightCheck(float horizontal)
+    {
+        if (horizontal > 0)
+        {
+            IsFacingRight = true;
+        }
+        else if (horizontal < 0)
+        {
+            IsFacingRight = false;
+        }
     }
 
     private void Jump()
