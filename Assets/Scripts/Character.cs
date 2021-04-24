@@ -10,11 +10,6 @@ public class Character : MonoBehaviour
     public event Action CharacterDied;
     public event Action CharacterTookDamage;
 
-    private void OnDisable()
-    {
-        CharacterDied?.Invoke();
-    }
-
     public void Damage()
     {
         currentHealth--;
@@ -22,8 +17,13 @@ public class Character : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            gameObject.SetActive(false);
+            Kill();
         }
+    }
 
+    public void Kill()
+    {
+        gameObject.SetActive(false);
+        CharacterDied?.Invoke();
     }
 }

@@ -8,7 +8,7 @@ public class Trap : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.gameObject.SetActive(false);
+            collision.GetComponent<Character>().Kill();
         }
     }
 }
