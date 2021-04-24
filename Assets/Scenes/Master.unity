@@ -174,6 +174,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6545201450545844467, guid: e88424ef58c7d1442af5685a5ad3e40f, type: 3}
+      propertyPath: levelsNames.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6545201450545844467, guid: e88424ef58c7d1442af5685a5ad3e40f, type: 3}
+      propertyPath: levelsScenes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6545201450545844467, guid: e88424ef58c7d1442af5685a5ad3e40f, type: 3}
+      propertyPath: levelsNames.Array.data[0]
+      value: Cavern
+      objectReference: {fileID: 0}
     - target: {fileID: 6545201450545844468, guid: e88424ef58c7d1442af5685a5ad3e40f, type: 3}
       propertyPath: m_Name
       value: GameManager
