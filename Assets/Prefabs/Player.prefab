@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 1152564330337732738}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,6 +179,7 @@ MonoBehaviour:
   jumpsForce: 6
   gravityScale: 1.5
   groundCheckSize: {x: 0.5, y: 0.1}
+  wallCheckSize: {x: 0.1, y: 1}
   layerMask:
     serializedVersion: 2
     m_Bits: 1
