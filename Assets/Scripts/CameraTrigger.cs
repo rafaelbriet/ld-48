@@ -12,6 +12,10 @@ public class CameraTrigger : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
+            PlayerController player = collision.GetComponent<PlayerController>();
+
+            player.IsFalling();
+
             OnTriggerEnter?.Invoke();
         }
     }

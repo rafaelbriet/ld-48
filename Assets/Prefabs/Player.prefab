@@ -179,8 +179,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  fallingSpeed: 20
   jumpsForce: 6.5
   gravityScale: 1.5
+  fallingGravityScale: 0.3
   groundCheckSize: {x: 0.5, y: 0.1}
   wallCheckSize: {x: 0.1, y: 0.9}
   layerMask:
@@ -227,3 +229,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grenade: {fileID: 5889650738966472563, guid: bf76e637035d4ea4789f30774af2c892, type: 3}
+  launchForce: 5

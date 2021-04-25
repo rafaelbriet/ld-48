@@ -7,19 +7,24 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float speed;
     [SerializeField]
+    private float fallingSpeed;
+    [SerializeField]
     private float jumpsForce;
     [SerializeField]
     private float gravityScale;
+    [SerializeField]
+    private float fallingGravityScale;
     [SerializeField]
     private Vector2 groundCheckSize = new Vector2(0.1f, 0.2f);
     [SerializeField]
     private Vector2 wallCheckSize = new Vector2(0.1f, 1f);
     [SerializeField]
-
     private LayerMask layerMask;
+
     private Rigidbody2D rb;
     private BoxCollider2D boxCollider2D;
     private bool isGrounded = true;
+    private bool isFalling = false;
     private Sword sword;
     private GameManager gameManager;
     private int jumpCount;
@@ -63,6 +68,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void IsFalling()
+    {
+        rb.gravityScale = fallingGravityScale;
+        isFalling = true;
+        isGrounded = false;
+    }
+
     private void Move()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -88,7 +100,16 @@ public class PlayerController : MonoBehaviour
             horizontal = 0;
         }
 
-        Vector3 translations = new Vector3(horizontal * speed * Time.deltaTime, 0, 0);
+        Vector3 translations;
+
+        if (isFalling)
+        {
+            translations = new Vector3(horizontal * fallingSpeed * Time.deltaTime, 0, 0);
+        }
+        else
+        {
+            translations = new Vector3(horizontal * speed * Time.deltaTime, 0, 0);
+        }
 
         transform.Translate(translations);
     }
@@ -113,13 +134,16 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpsForce);
         }
 
-        if (rb.velocity.y >= 0)
+        if (isFalling == false)
         {
-            rb.gravityScale = 1;
-        }
-        else
-        {
-            rb.gravityScale = gravityScale;
+            if (rb.velocity.y >= 0)
+            {
+                rb.gravityScale = 1;
+            }
+            else
+            {
+                rb.gravityScale = gravityScale;
+            }
         }
     }
 
