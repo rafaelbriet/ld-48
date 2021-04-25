@@ -103,6 +103,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   attackRange: 4
+  grenadeCooldown: 1
 --- !u!114 &-9208460859927621931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,8 +116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e017768c8d0ae45a4d888810a0a6a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grenade: {fileID: 5960648763740211693}
-  launchForce: 5
+  grenade: {fileID: 5889650738966472563, guid: c2138af049c66bd4b8149b190f458474, type: 3}
+  launchForce: 4.5
 --- !u!1 &5960648764261457751
 GameObject:
   m_ObjectHideFlags: 0

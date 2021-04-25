@@ -9,9 +9,14 @@ public class Skeleton : Enemy
     
     [SerializeField]
     private float attackRange = 4f;
+    [SerializeField]
+    private float grenadeCooldown = 1f;
 
     private SkeletonStates currentState;
     private GrenadeLauncher grenade;
+    private bool hasLaunchedGrenade;
+
+    public Transform Target => target;
 
     protected void Start()
     {
@@ -69,7 +74,12 @@ public class Skeleton : Enemy
 
     private void Attack()
     {
-        grenade.Launch();
+        if (hasLaunchedGrenade == false)
+        {
+            grenade.Launch();
+
+            StartCoroutine(GrenadeCooldown());
+        }
 
         if (CanSeePlayer() == false)
         {
@@ -80,6 +90,20 @@ public class Skeleton : Enemy
         {
             ChangeState(SkeletonStates.MoveTowards);
         }
+    }
+
+    private IEnumerator GrenadeCooldown()
+    {
+        hasLaunchedGrenade = true;
+        float timer = 0;
+
+        while (timer < grenadeCooldown)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        hasLaunchedGrenade = false;
     }
 
     private void ChangeState(SkeletonStates nextState)

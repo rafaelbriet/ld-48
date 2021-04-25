@@ -36,6 +36,24 @@ public class GrenadeLauncher : MonoBehaviour
                 launchDirection = -1;
             }
         }
+        else
+        {
+            Skeleton skeleton = GetComponent<Skeleton>();
+
+            Vector3 direction = skeleton.Target.position - transform.position;
+            float dot = Vector3.Dot(direction.normalized, transform.right);
+
+            if (dot > 0)
+            {
+                spawnPosition = new Vector3(boxCollider.bounds.center.x + boxCollider.bounds.extents.x + 0.3f, boxCollider.bounds.center.y, 0);
+                launchDirection = 1;
+            }
+            else if (dot < 0)
+            {
+                spawnPosition = new Vector3(boxCollider.bounds.center.x - boxCollider.bounds.extents.x - 0.3f, boxCollider.bounds.center.y, 0);
+                launchDirection = -1;
+            }
+        }
 
         GameObject grenadeGo = Instantiate(grenade, spawnPosition, Quaternion.identity);
         Rigidbody2D grenadeRb = grenadeGo.GetComponent<Rigidbody2D>();

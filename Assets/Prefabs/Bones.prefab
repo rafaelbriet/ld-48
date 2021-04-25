@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5889650737454645529}
   - component: {fileID: 5889650737454645530}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TempSprites_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4343377139224880149}
   - component: {fileID: -7141544454032148221}
   - component: {fileID: 5889650738966472573}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
