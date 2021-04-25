@@ -35,8 +35,14 @@ public class Sword : MonoBehaviour
 
         if (collider != null)
         {
-            Debug.Log("IsFacingRight: " + playerController.IsFacingRight);
-            Destroy(collider.gameObject);
+            if (collider.TryGetComponent<Satan>(out Satan satan))
+            {
+                satan.Damage();
+            }
+            else
+            {
+                Destroy(collider.gameObject);
+            }
         }
     }
 
