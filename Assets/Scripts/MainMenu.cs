@@ -7,10 +7,14 @@ public class MainMenu : MonoBehaviour
 {
     private void Update()
     {
-        if (Input.anyKeyDown)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("AnyKey");
             SceneManager.LoadScene("Caves");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Application.Quit();
         }
     }
 }
