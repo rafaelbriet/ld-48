@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private int jumpCount;
     private GrenadeLauncher grenadeLauncher;
     private AudioSource audioSource;
+    private SpriteRenderer spriteRenderer;
 
     public bool IsFacingRight { get; private set; }
 
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour
         sword = GetComponent<Sword>();
         grenadeLauncher = GetComponent<GrenadeLauncher>();
         audioSource = GetComponent<AudioSource>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Start()
@@ -78,6 +80,15 @@ public class PlayerController : MonoBehaviour
         {
             grenadeLauncher.Launch();
             audioSource.PlayOneShot(grenadeAttackAudio);
+        }
+
+        if (IsFacingRight)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else
+        {
+            spriteRenderer.flipX = true;
         }
     }
 
