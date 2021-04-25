@@ -10,9 +10,14 @@ public class GameManager : MonoBehaviour
     private GameObject playerPrefab;
     [SerializeField]
     private bool canDoubleJump = false;
+    [SerializeField]
+    private Canvas pauseCanvas;
 
     private GameObject player;
     private Satan satan;
+    private bool isGamePaused;
+
+    public bool IsGamePaused { get => isGamePaused; private set => isGamePaused = value; }
 
     public bool CanDoubleJump => canDoubleJump;
 
@@ -29,6 +34,37 @@ public class GameManager : MonoBehaviour
         if (satan != null)
         {
             satan.SatanDied += OnSataDeath;
+        }
+
+        pauseCanvas.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isGamePaused)
+            {
+                Time.timeScale = 1;
+                isGamePaused = false;
+                pauseCanvas.gameObject.SetActive(false);
+
+                if (Input.GetKeyDown(KeyCode.M))
+                {
+                    SceneManager.LoadScene("MainMenu");
+                }
+
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    Application.Quit();
+                }
+            }
+            else
+            {
+                Time.timeScale = 0;
+                isGamePaused = true;
+                pauseCanvas.gameObject.SetActive(true);
+            }
         }
     }
 
