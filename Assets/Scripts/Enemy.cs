@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected float detectionRadius = 4f;
     [SerializeField]
+    protected float isGroundedDistance = 0.1f;
+    [SerializeField]
     protected LayerMask environmentLayerMask;
     [SerializeField]
     protected LayerMask playerLayerMask;
@@ -69,7 +71,7 @@ public class Enemy : MonoBehaviour
 
     protected bool IsGroundend()
     {
-        RaycastHit2D hit = Physics2D.Raycast(boxCollider.bounds.center, Vector3.down, 2f, environmentLayerMask);
+        RaycastHit2D hit = Physics2D.Raycast(boxCollider.bounds.center, Vector3.down, 1f + isGroundedDistance, environmentLayerMask);
 
         if (Debug.isDebugBuild)
         {
