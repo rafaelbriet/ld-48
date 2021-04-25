@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private BoxCollider2D boxCollider2D;
     private bool isGrounded = true;
     private Sword sword;
+    private GameManager gameManager;
+    private int jumpCount;
 
     public bool IsFacingRight { get; private set; }
 
@@ -31,11 +33,22 @@ public class PlayerController : MonoBehaviour
         sword = GetComponent<Sword>();
     }
 
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+
+        if (gameManager.CanDoubleJump == false)
+        {
+            jumpCount = 99;
+        }
+    }
+
     private void Update()
     {
         Move();
         Jump();
         CheckGrounded();
+        CheckDoubleJump();
 
         if (Input.GetButtonDown("Fire1"))
         {
@@ -87,8 +100,9 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && (jumpCount < 1 || isGrounded))
         {
+            jumpCount++;
             rb.velocity = new Vector2(rb.velocity.x, jumpsForce);
         }
 
@@ -110,6 +124,14 @@ public class PlayerController : MonoBehaviour
         Collider2D collider = Physics2D.OverlapBox(point, size, 0f, layerMask);
 
         isGrounded = collider != null;
+    }
+
+    private void CheckDoubleJump()
+    {
+        if (isGrounded && gameManager.CanDoubleJump)
+        {
+            jumpCount = 0;
+        }
     }
 
     private void OnDrawGizmos()

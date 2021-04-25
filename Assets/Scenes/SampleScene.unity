@@ -214,7 +214,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8658956043701540769, guid: 756069e0e0fd04c46bcc17c196a3384e, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8658956043701540769, guid: 756069e0e0fd04c46bcc17c196a3384e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -750,6 +750,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6545201450545844467, guid: e88424ef58c7d1442af5685a5ad3e40f, type: 3}
+      propertyPath: canDoubleJump
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6545201450545844467, guid: e88424ef58c7d1442af5685a5ad3e40f, type: 3}
       propertyPath: nextLevelName
       value: Caves
       objectReference: {fileID: 0}
@@ -816,7 +820,7 @@ Transform:
   m_Children:
   - {fileID: 171355013}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1379327929
 MonoBehaviour:

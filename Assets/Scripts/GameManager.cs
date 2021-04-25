@@ -8,8 +8,12 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject playerPrefab;
+    [SerializeField]
+    private bool canDoubleJump = false;
 
     private GameObject player;
+
+    public bool CanDoubleJump => canDoubleJump;
 
     private void Awake()
     {
