@@ -11,9 +11,12 @@ public class Skeleton : Enemy
     private float attackRange = 4f;
 
     private SkeletonStates currentState;
+    private GrenadeLauncher grenade;
 
     protected void Start()
     {
+        grenade = GetComponent<GrenadeLauncher>();
+
         ChangeState(SkeletonStates.Patrol);
     }
 
@@ -66,7 +69,7 @@ public class Skeleton : Enemy
 
     private void Attack()
     {
-        Debug.Log("Attaaaaack!!!!");
+        grenade.Launch();
 
         if (CanSeePlayer() == false)
         {

@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 3366610667684731768}
   m_Layer: 8
   m_Name: Satan
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,6 +183,7 @@ MonoBehaviour:
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 128
+  currentHealth: 8
   dashAttackRange: 8
   dashAttackSpeed: 8
   dashAttackChance: 0.1

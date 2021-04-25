@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private Sword sword;
     private GameManager gameManager;
     private int jumpCount;
+    private GrenadeLauncher grenadeLauncher;
 
     public bool IsFacingRight { get; private set; }
 
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
         sword = GetComponent<Sword>();
+        grenadeLauncher = GetComponent<GrenadeLauncher>();
     }
 
     private void Start()
@@ -53,6 +55,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             sword.Attack();
+        }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            grenadeLauncher.Launch();
         }
     }
 
