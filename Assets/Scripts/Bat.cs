@@ -14,16 +14,20 @@ public class Bat : MonoBehaviour
     private float detectionRadius = 3f;
     [SerializeField]
     private LayerMask layerMask;
+    [SerializeField]
+    private AudioClip batAudio;
 
     private Transform target;
     private BoxCollider2D boxCollider;
     private AIStates currentState = AIStates.Idle;
     private bool canAttack = true;
     private Coroutine attackCooldownCoroutine;
+    private AudioSource audioSource;
 
     private void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -35,6 +39,12 @@ public class Bat : MonoBehaviour
                 break;
             case AIStates.MoveTowards:
                 MoveTowards();
+
+                if (audioSource.isPlaying == false)
+                {
+                    audioSource.Play();
+                }
+
                 break;
             case AIStates.Attack:
                 Attack();

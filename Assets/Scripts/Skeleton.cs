@@ -11,16 +11,20 @@ public class Skeleton : Enemy
     private float attackRange = 4f;
     [SerializeField]
     private float grenadeCooldown = 1f;
+    [SerializeField]
+    private AudioClip attasckAudio;
 
     private SkeletonStates currentState;
     private GrenadeLauncher grenade;
     private bool hasLaunchedGrenade;
+    private AudioSource audioSource;
 
     public Transform Target => target;
 
     protected void Start()
     {
         grenade = GetComponent<GrenadeLauncher>();
+        audioSource = GetComponent<AudioSource>();
 
         ChangeState(SkeletonStates.Patrol);
     }
@@ -78,6 +82,11 @@ public class Skeleton : Enemy
         {
             grenade.Launch();
 
+            if (audioSource != null)
+            {
+                audioSource.PlayOneShot(attasckAudio);
+            }
+            
             StartCoroutine(GrenadeCooldown());
         }
 

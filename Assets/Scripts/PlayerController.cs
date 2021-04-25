@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Controller")]
     [SerializeField]
     private float speed;
     [SerializeField]
@@ -21,6 +22,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private LayerMask layerMask;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioClip swordAttackAudio;
+    [SerializeField]
+    private AudioClip grenadeAttackAudio;
+    [SerializeField]
+    private AudioClip deathAudio;
+
     private Rigidbody2D rb;
     private BoxCollider2D boxCollider2D;
     private bool isGrounded = true;
@@ -29,6 +38,7 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
     private int jumpCount;
     private GrenadeLauncher grenadeLauncher;
+    private AudioSource audioSource;
 
     public bool IsFacingRight { get; private set; }
 
@@ -38,6 +48,7 @@ public class PlayerController : MonoBehaviour
         boxCollider2D = GetComponent<BoxCollider2D>();
         sword = GetComponent<Sword>();
         grenadeLauncher = GetComponent<GrenadeLauncher>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -60,11 +71,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             sword.Attack();
+            audioSource.PlayOneShot(swordAttackAudio);
         }
 
         if (Input.GetButtonDown("Fire2"))
         {
             grenadeLauncher.Launch();
+            audioSource.PlayOneShot(grenadeAttackAudio);
         }
     }
 

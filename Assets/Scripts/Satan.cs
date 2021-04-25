@@ -7,6 +7,7 @@ public enum SatanStates { Idle, MoveTowards, AttackJump, AttackDash, Stunt }
 
 public class Satan : Enemy
 {
+    [Header("AI")]
     [SerializeField]
     private int currentHealth = 8;
     [SerializeField]
@@ -26,18 +27,30 @@ public class Satan : Enemy
     [SerializeField]
     private Vector2 jumpAttackSize = new Vector2(4f, 0.2f);
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioClip dashAttackAudio;
+    [SerializeField]
+    private AudioClip jumpAudio;
+    [SerializeField]
+    private AudioClip jumpLandAudio;
+    [SerializeField]
+    private AudioClip dashCollisionAudio;
+
     private SatanStates currentState;
     private Rigidbody2D rb;
     private bool canJump = true;
     private bool hasJumpAttacked = false;
     private bool hasDashed = false;
     private Coroutine dashCooldownCoroutine;
+    private AudioSource audioSource;
 
     public event Action SatanDied;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
 
         ChangeState(SatanStates.Idle);
     }
@@ -112,6 +125,7 @@ public class Satan : Enemy
 
         if (canJump && IsGroundend())
         {
+            audioSource.PlayOneShot(jumpAudio);
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 
             StartCoroutine(JumpCooldown());
@@ -139,6 +153,8 @@ public class Satan : Enemy
             {
                 collider.GetComponent<Character>().Damage();
             }
+
+            audioSource.PlayOneShot(jumpLandAudio);
 
             ChangeState(SatanStates.MoveTowards);
         }
@@ -197,6 +213,8 @@ public class Satan : Enemy
                 horizontalDirection = -1;
             }
 
+            audioSource.PlayOneShot(dashAttackAudio);
+
             dashCooldownCoroutine = StartCoroutine(DashCooldown());
 
             hasDashed = true;
@@ -216,6 +234,7 @@ public class Satan : Enemy
         }
 
         hasDashed = false;
+        audioSource.PlayOneShot(dashCollisionAudio);
         ChangeState(SatanStates.Stunt);
     }
 

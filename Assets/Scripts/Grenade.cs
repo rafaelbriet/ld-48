@@ -8,9 +8,15 @@ public class Grenade : MonoBehaviour
     private string tagToCompare = "Enemy";
     [SerializeField]
     private Vector2 size = new Vector2(2f, 2f);
+    [SerializeField]
+    private AudioClip grenadeExplodeAudio;
+
+    private AudioSource audioSource;
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
+
         StartCoroutine(GrenadeTimer());
     }
 
@@ -49,6 +55,25 @@ public class Grenade : MonoBehaviour
                     }
                 }
             }
+        }
+
+        if (audioSource != null)
+        {
+            audioSource.PlayOneShot(grenadeExplodeAudio);
+        }
+
+        StartCoroutine(DestroyGrenade());
+    }
+
+    private IEnumerator DestroyGrenade()
+    {
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+        gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
+
+        while (audioSource.isPlaying)
+        {
+            yield return null;
         }
 
         Destroy(gameObject);
