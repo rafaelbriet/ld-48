@@ -19843,7 +19843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8658956043701540768, guid: 756069e0e0fd04c46bcc17c196a3384e, type: 3}
       propertyPath: OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: SampleScene
+      value: Hell
       objectReference: {fileID: 0}
     - target: {fileID: 8658956043701540768, guid: 756069e0e0fd04c46bcc17c196a3384e, type: 3}
       propertyPath: OnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
