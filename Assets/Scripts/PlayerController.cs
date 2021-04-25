@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    private Sprite defaultSprite;
+    [SerializeField]
+    private Sprite attackSprite;
+
     [Header("Controller")]
     [SerializeField]
     private float speed;
@@ -72,6 +77,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
+            StartCoroutine(AttackSpriteSwap());
             sword.Attack();
             audioSource.PlayOneShot(swordAttackAudio);
         }
@@ -90,6 +96,21 @@ public class PlayerController : MonoBehaviour
         {
             spriteRenderer.flipX = true;
         }
+    }
+
+    private IEnumerator AttackSpriteSwap()
+    {
+        spriteRenderer.sprite = attackSprite;
+
+        int counter = 0;
+
+        while (counter < 8)
+        {
+            counter++;
+            yield return null;
+        }
+
+        spriteRenderer.sprite = defaultSprite;
     }
 
     public void IsFalling()

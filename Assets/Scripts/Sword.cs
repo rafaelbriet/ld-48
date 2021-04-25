@@ -11,6 +11,7 @@ public class Sword : MonoBehaviour
 
     private PlayerController playerController;
     private BoxCollider2D boxCollider;
+    private Coroutine attackCoroutine;
 
     private void Awake()
     {
@@ -20,29 +21,48 @@ public class Sword : MonoBehaviour
 
     public void Attack()
     {
-        Vector2 point;
-
-        if (playerController.IsFacingRight)
+        if (attackCoroutine != null)
         {
-            point = new Vector2(boxCollider.bounds.center.x + boxCollider.bounds.extents.x, boxCollider.bounds.center.y);
-        }
-        else
-        {
-            point = new Vector2(boxCollider.bounds.center.x - boxCollider.bounds.extents.x, boxCollider.bounds.center.y);
+            StopCoroutine(attackCoroutine);
         }
 
-        Collider2D collider = Physics2D.OverlapBox(point, attackSize, 0f, layerMask);
+        attackCoroutine = StartCoroutine(AttackCoroutine());
+    }
 
-        if (collider != null)
+    private IEnumerator AttackCoroutine()
+    {
+        int counter = 0;
+
+        while (counter < 8)
         {
-            if (collider.TryGetComponent<Satan>(out Satan satan))
+            Vector2 point;
+
+            if (playerController.IsFacingRight)
             {
-                satan.Damage();
+                point = new Vector2(boxCollider.bounds.center.x + boxCollider.bounds.extents.x, boxCollider.bounds.center.y);
             }
             else
             {
-                Destroy(collider.gameObject);
+                point = new Vector2(boxCollider.bounds.center.x - boxCollider.bounds.extents.x, boxCollider.bounds.center.y);
             }
+
+            Collider2D collider = Physics2D.OverlapBox(point, attackSize, 0f, layerMask);
+
+            if (collider != null)
+            {
+                if (collider.TryGetComponent<Satan>(out Satan satan))
+                {
+                    satan.Damage();
+                }
+                else
+                {
+                    Destroy(collider.gameObject);
+                }
+            }
+
+            counter++;
+
+            yield return null;
         }
     }
 

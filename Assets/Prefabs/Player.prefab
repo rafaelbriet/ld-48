@@ -179,6 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60371abcd71ecef4085258bf69d0853f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultSprite: {fileID: 3542127132570728493, guid: 3889340122e8527418197c847273a704, type: 3}
+  attackSprite: {fileID: -1960546628078278901, guid: 3889340122e8527418197c847273a704, type: 3}
   speed: 5
   fallingSpeed: 20
   jumpsForce: 6.5
