@@ -6,14 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
     path: Assets/Scenes/Menus/MainMenu.unity
     guid: bd971b401b4918946a1cadf409d4e8a5
   - enabled: 1
     path: Assets/Scenes/Levels/Caves.unity
     guid: 965d9ec671f10e7428f493fafcc56898
+  - enabled: 1
+    path: Assets/Scenes/Levels/Hell.unity
+    guid: b54f9622d2915d64ebee700fc3407951
+  - enabled: 1
+    path: Assets/Scenes/Levels/SatanThrone.unity
+    guid: f6ea326923a37574e95caa4883485bec
   - enabled: 1
     path: Assets/Scenes/Menus/GameOver.unity
     guid: d3a1265554406c74e8cba4a4da79d70a
