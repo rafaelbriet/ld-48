@@ -66,6 +66,19 @@ public class GameManager : MonoBehaviour
                 pauseCanvas.gameObject.SetActive(true);
             }
         }
+
+        if (isGamePaused)
+        {
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                SceneManager.LoadScene("MainMenu");
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                Application.Quit();
+            }
+        }
     }
 
     private void OnSataDeath()
