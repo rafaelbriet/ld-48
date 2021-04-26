@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagToCompare: Enemy
-  size: {x: 2, y: 2}
+  size: {x: 3, y: 3}
   grenadeExplodeAudio: {fileID: 8300000, guid: b280accf85e9e624c81bc7754135e626, type: 3}
 --- !u!82 &-1426206835512796712
 AudioSource:
