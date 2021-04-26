@@ -185,7 +185,7 @@ MonoBehaviour:
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  currentHealth: 8
+  currentHealth: 16
   dashAttackRange: 8
   dashAttackSpeed: 8
   dashAttackChance: 0.1
