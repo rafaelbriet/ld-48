@@ -13,6 +13,8 @@ public class Grenade : MonoBehaviour
 
     private AudioSource audioSource;
 
+    public GameObject Owner { get; set; }
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -22,6 +24,11 @@ public class Grenade : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject == Owner)
+        {
+            return;
+        }
+
         Explode();
     }
 

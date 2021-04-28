@@ -56,6 +56,9 @@ public class GrenadeLauncher : MonoBehaviour
         }
 
         GameObject grenadeGo = Instantiate(grenade, spawnPosition, Quaternion.identity);
+
+        grenadeGo.GetComponent<Grenade>().Owner = gameObject;
+
         Rigidbody2D grenadeRb = grenadeGo.GetComponent<Rigidbody2D>();
 
         Vector2 force = new Vector2(launchForce * launchDirection, launchForce);
